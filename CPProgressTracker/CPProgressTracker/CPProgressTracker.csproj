@@ -8,15 +8,12 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Factories\" />
     <Folder Include="Areas\Admin\Infrastructure\" />
     <Folder Include="Areas\Admin\Tasks\" />
     <Folder Include="Areas\Admin\Views\" />
-    <Folder Include="Data\" />
     <Folder Include="Factories\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>

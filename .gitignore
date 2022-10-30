@@ -10,3 +10,5 @@
 /CPProgressTracker/CP.Data/obj
 /CPProgressTracker/CP.Services/bin/Debug/net6.0
 /CPProgressTracker/CP.Services/obj
+/CPProgressTracker/CP.Core/bin/Debug/net6.0
+/CPProgressTracker/CP.Core/obj
