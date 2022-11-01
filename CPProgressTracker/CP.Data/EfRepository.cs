@@ -1,4 +1,5 @@
 ﻿using CP.Core;
+using CP.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
