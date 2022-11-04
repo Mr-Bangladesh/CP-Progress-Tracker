@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using CP.Data.Mapping;
 
 namespace CP.Data
 {
@@ -35,8 +36,8 @@ namespace CP.Data
             //dynamically load all entity and query type configurations
             var typeConfigurations = Assembly.GetExecutingAssembly().GetTypes().Where(type =>
                 (type.BaseType?.IsGenericType ?? false)
-                    && (type.BaseType.GetGenericTypeDefinition() == typeof(NopEntityTypeConfiguration<>)
-                        || type.BaseType.GetGenericTypeDefinition() == typeof(NopQueryTypeConfiguration<>)));
+                    && (type.BaseType.GetGenericTypeDefinition() == typeof(EntityMappingConfiguration<>)
+                        || type.BaseType.GetGenericTypeDefinition() == typeof(QueryConfiguration<>)));
 
             foreach (var typeConfiguration in typeConfigurations)
             {

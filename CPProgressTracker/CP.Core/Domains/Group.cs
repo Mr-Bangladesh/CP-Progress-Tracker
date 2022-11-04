@@ -8,7 +8,6 @@ namespace CP.Core.Domains
 {
     public class Group : BaseEntity
     {
-        private ICollection<User> _members;
         /// <summary>
         /// Gets or sets the name
         /// </summary>
@@ -28,14 +27,5 @@ namespace CP.Core.Domains
         /// Gets or sets the date time of updating group
         /// </summary>
         public DateTime UpdatedOnUtc { get; set; }
-
-        /// <summary>
-        /// Gets or sets the collection of members joined in group
-        /// </summary>
-        public ICollection<User> Members
-        {
-            get => _members ?? (_members = new List<User>());
-            protected set => _members = value;
-        }
     }
 }
