@@ -4,7 +4,8 @@ using System.Diagnostics;
 
 namespace CPProgressTracker.Controllers
 {
-    public class HomeController : Controller
+    //[Route("api/home")]
+    public class HomeController : BaseApiController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -15,7 +16,12 @@ namespace CPProgressTracker.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var response = new GenericResponseModel<string>()
+            {
+                Data = "This is for testing",
+                Message = "The request is ok"
+            };
+            return Json(response);
         }
 
         public IActionResult Privacy()
