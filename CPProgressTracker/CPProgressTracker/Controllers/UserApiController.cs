@@ -1,4 +1,5 @@
 ﻿using CPProgressTracker.Models;
+using CPProgressTracker.Models.User;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CPProgressTracker.Controllers
@@ -10,16 +11,45 @@ namespace CPProgressTracker.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody]BaseRequestModel<LoginModel> model)
         {
-            if (model.Data.Password == "admin")
+            if (ModelState.IsValid)
             {
-                var response = new GenericResponseModel<string>()
+                var response = new GenericResponseModel<LoginResponseModel>()
                 {
-                    Data = "Login Credentials Correct",
-                    Message = model.Data.Email
+                    Message = "User is Authenticated"
                 };
-                return Ok(response);
+
+                var responseData = new LoginResponseModel()
+                {
+                    UserInfo = new UserInfoModel()
+                    {
+                        FirstName = "Test",
+                        LastName = "Test",
+                        Email = model.Data.Email
+                    },
+                    Token = GetToken()
+                };
+
             }
-            return BadRequest();
+            
         }
+
+        [Route("get-user-data/{id}")]
+        public async Task<IActionResult> GetUserData(int id)
+        {
+            var response = new GenericResponseModel<string>()
+            {
+                Data = "This action should be authorized",
+                Message = $"Id sent with request is {id}"
+            };
+
+            return Ok(response);
+        }
+
+        #region Utilities
+        private async Task<string> GetToken(string userName)
+        {
+            
+        }
+        #endregion
     }
 }
