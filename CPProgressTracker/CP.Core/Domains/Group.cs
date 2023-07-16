@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CP.Core.Domains
 {
-    public class Group : BaseEntity
+    public class Group : BaseEntity, ISoftDeletedEntity
     {
         /// <summary>
         /// Gets or sets the name

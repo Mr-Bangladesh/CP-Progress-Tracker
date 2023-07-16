@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CP.Core.Domains
 {
-    public class University : BaseEntity
+    public class University : BaseEntity, ISoftDeletedEntity
     {
         /// <summary>
         /// Gets or sets the name

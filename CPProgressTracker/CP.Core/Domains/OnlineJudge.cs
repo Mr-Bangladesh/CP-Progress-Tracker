@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CP.Core.Domains
 {
-    public class OnlineJudge : BaseEntity
+    public class OnlineJudge : BaseEntity, ISoftDeletedEntity
     {
         /// <summary>
         /// Gets or sets the name

@@ -177,13 +177,24 @@ namespace CP.Data
         /// <param name="entity">Entity</param>
         public virtual void Delete(TEntity entity)
         {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
-
             try
             {
-                Entities.Remove(entity);
-                _context.SaveChanges();
+                switch (entity)
+                {
+                    case null:
+                        throw new ArgumentNullException(nameof(entity));
+
+                    case ISoftDeletedEntity softDeletedEntity:
+                        softDeletedEntity.Deleted = true;
+                        Entities.Update(entity);
+                        _context.SaveChanges();
+                        break;
+
+                    default:
+                        Entities.Remove(entity);
+                        _context.SaveChanges();
+                        break;
+                }
             }
             catch (DbUpdateException exception)
             {
@@ -203,8 +214,21 @@ namespace CP.Data
 
             try
             {
-                Entities.RemoveRange(entities);
-                _context.SaveChanges();
+                if (entities.OfType<ISoftDeletedEntity>().Any())
+                {
+                    foreach (var entity in entities)
+                        if (entity is ISoftDeletedEntity softDeletedEntity)
+                        {
+                            softDeletedEntity.Deleted = true;
+                            Entities.Update(entity);
+                            _context.SaveChanges();
+                        }
+                }
+                else
+                {
+                    Entities.RemoveRange(entities);
+                    _context.SaveChanges();
+                }
             }
             catch (DbUpdateException exception)
             {

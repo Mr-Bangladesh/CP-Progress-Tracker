@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CP.Core.Domains
 {
-    public class User : BaseEntity
+    public class User : BaseEntity, ISoftDeletedEntity
     {
         private ICollection<UserGroup> _groups;
         private ICollection<UserOnlineJudge> _onlineJudges;
